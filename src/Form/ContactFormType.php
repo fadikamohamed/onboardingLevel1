@@ -20,13 +20,22 @@ class ContactFormType extends AbstractType
         $contact = new Contact();
         $builder
             ->add('lastname', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'attr' => [
+                'placeholder' => 'Veuillez entrer votre nom'
+                ]
             ])
             ->add('firstname', TextType::class, [
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                'attr' => [
+                    'placeholder' => 'Veuillez entrer votre prénom'
+                ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse e-mail'
+                'label' => 'Adresse e-mail',
+                'attr' => [
+                    'placeholder' => 'Veuillez entrer une adresse e-mail'
+                ]
             ])
             ->add('division', EntityType::class, [
                 'label' => 'Département',
@@ -34,7 +43,10 @@ class ContactFormType extends AbstractType
                 'choice_label' => 'name'
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Méssage'
+                'label' => 'Méssage',
+                'attr' => [
+                    'placeholder' => 'Veuillez écrire votre message ici'
+                ]
             ])
             ->add('Envoyer', SubmitType::class)
         ;
