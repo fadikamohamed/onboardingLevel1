@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
@@ -18,21 +19,40 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Regex(
+     *      pattern="/^[a-zA-Z _\'\-àâäéèêëîïôöûüùçæ]*$/i",
+     *      match=true,
+     *      message="Veuillez entrer un nom valide en utilisant uniquement les caractères valides (a-z _\'\-àâäéèêëîïôöûüùçæ)."
+     *     )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Regex(
+     *      pattern="/^[a-z _\'\-àâäéèêëîïôöûüùçæ]*$/i",
+     *      match=true,
+     *      message="Veuillez entrer un prénom valide en utilisant uniquement les caractères valides (a-z _\'\-àâäéèêëîïôöûüùçæ)."
+     *     )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(
+     *     message = "Cette addresse e-mail n'est pas valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Regex(
+     *      pattern="/^[0-9a-zâàäéêëùûüîïöç\'\s-,.!?;:()@=€$&#*£]+$/i",
+     *      match=true,
+     *      message="Veuillez utiliser uniquement les caractères valides (0-9a-zâàäéêëùûüîïöç\'\s-,.!?;:()@=€$&#*£)."
+     *     )
      */
     private $message;
 

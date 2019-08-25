@@ -5,5 +5,17 @@
 
 {% block body %}
     <h1>Fiche de contact</h1>
-{{ form(contactForm) }}
+    {% for successMessage in app.flashes('success') %}
+
+        <p class="alert alert-success">{{ successMessage }}</p>
+
+    {% endfor %}
+    {% if not contactForm.vars.valid %}
+        {% for errorMessage in app.flashes('error') %}
+
+            <p class="alert alert-danger">{{ errorMessage }}</p>
+
+        {% endfor %}
+    {% endif %}
+    {{ form(contactForm) }}
 {% endblock %}

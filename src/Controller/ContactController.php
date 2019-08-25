@@ -25,6 +25,8 @@ class ContactController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $this->addFlash('success', 'Votre message bien était envoyé.');
+            $this->addFlash('error', 'Votre message n\'a pu être envoyé vérifiez qu\'il n\'y a pas d\'erreur.');
             $notification->notify($contact);
             $manager->persist($contact);
             $manager->flush();
